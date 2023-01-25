@@ -16,16 +16,16 @@ const Home = ({ }) => {
     return <div className="">
         <Navbar isLogin={false} handleFeatureClick={handleFeatureClick} />
         <div className=" ">
-            <div className="grid grid-cols-[60%_40%] h-[85vh] items-center px-5 my-8">
-                <div className="">
+            <div className="grid grid-cols-[60%_40%] min-h-[85vh] items-center px-5 my-8">
+                <div className="py-8">
                     <h1 className="text-center text-[#11256D] text-4xl uppercase">
                         <Typewriter speed={70} delay={20} text={"Bringing people together in real-time"} />
                     </h1>
                     <div className="">
-                        <img className="my-12" src="https://res.cloudinary.com/diafifpzr/image/upload/v1674635329/girls_1_1_1_hqalzo.png" width={900} height={600} alt="" />
+                        <img className="my-12 mx-auto" src="https://res.cloudinary.com/diafifpzr/image/upload/v1674635329/girls_1_1_1_hqalzo.png" width={900} height={600} alt="" />
                     </div>
                 </div>
-                <div className="h-full ">
+                <div className="h-full">
                     <Authentication />
                 </div>
             </div>

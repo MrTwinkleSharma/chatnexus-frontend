@@ -143,7 +143,7 @@ const Authentication = () => {
       }}
     >
       {({ values, handleChange, errors, touched }) => (
-        <Paper elevation={4} className='p-8 flex items-center h-full select-none'>
+        <Paper elevation={4} className='py-8 px-8 flex items-center h-full select-none'>
           <Form className="w-full">
             <Box className="my-8">
               <Typography variant="h5" className="text-center text-[#11256D]">
