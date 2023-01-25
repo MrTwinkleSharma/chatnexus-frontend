@@ -2,11 +2,16 @@ import ChatSpace from "../Components/Chatbox";
 import Navbar from "../Components/Navbar"
 import MyChats from "../Components/MyChats";
 import { ChatState } from "../Context/ChatProvider";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const Chat = () => {
-  const { user } = ChatState();
   const [fetchAgain, setFetchAgain] = useState(false);
+
+  // console.log("In the chat page");
+  // useEffect(() => {
+  //   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  //   if (!userInfo) navigator("/");
+  // }, []);
 
   return <div>
     <Navbar isLogin={true} />
