@@ -22,7 +22,7 @@ const Home = ({ }) => {
                         <Typewriter speed={70} delay={20} text={"Bringing people together in real-time"} />
                     </h1>
                     <div className="flex justify-center">
-                        <img className="my-12" src="girls_1.jpg" width={750} height={500} alt="" />
+                        <img className="my-12" src="https://res.cloudinary.com/diafifpzr/image/upload/v1674635329/girls_1_1_1_hqalzo.png" width={900} height={600} alt="" />
                     </div>
                 </div>
                 <div className="h-full w-[40%]">
