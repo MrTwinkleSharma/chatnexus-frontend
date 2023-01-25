@@ -59,9 +59,11 @@ const Navbar = ({ isLogin, handleFeatureClick }) => {
                             </>
                             :
                             <div className="text-white m-3 text-lg">
-                                <div className="cursor-pointer flex hover:translate-y-2 hover:bg-white hover:text-[#11256D] duration-300 justify-center items-center border-2 px-4 py-2 rounded-lg  ">
+                                <div className="cursor-pointer flex hover:translate-y-2 hover:bg-white hover:text-[#11256D] duration-300 justify-center items-center border-2 px-4 py-2 rounded-lg  "
+                                    onClick={handleFeatureClick}
+                                >
                                     <p className="mr-2"
-                                        onClick={handleFeatureClick}>
+                                    >
                                         Features
                                     </p>
                                     <AiOutlineArrowDown className=" " size={24} />
