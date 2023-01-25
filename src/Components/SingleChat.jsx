@@ -15,7 +15,7 @@ import useChatScroll from '../Helpers/useChatScroll.jsx';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 
-const ENDPOINT = process.env.REACT_APP_BACKEND_URL; 
+const ENDPOINT = process.env.REACT_APP_BACKEND_URL;
 var socket, selectedChatCompare;
 
 const CustomWidthTooltip = styled(({ className, ...props }) => (
@@ -61,13 +61,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             // console.log(data);
             socket.emit("join chat", selectedChat._id);
         } catch (error) {
-            toast({
-                title: "Error Occured!",
-                description: "Failed to Load the Messages",
-                status: "error",
-                duration: 5000,
-                isClosable: true,
-                position: "bottom",
+            toast("Error Occured!", {
+                type: "error",
             });
         }
     };
@@ -94,13 +89,36 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 socket.emit("new message", data);
                 setMessages([...messages, data]);
             } catch (error) {
-                toast({
-                    title: "Error Occured!",
-                    description: "Failed to send the Message",
-                    status: "error",
-                    duration: 5000,
-                    isClosable: true,
-                    position: "bottom",
+                toast("Error Occured!", {
+                    type: "error",
+                });
+            }
+        }
+    };
+    const sendMessageOnClick = async (event) => {
+        if (newMessage) {
+            socket.emit("stop typing", selectedChat._id);
+            try {
+                const config = {
+                    headers: {
+                        "Content-type": "application/json",
+                        Authorization: `Bearer ${user.token}`,
+                    },
+                };
+                setNewMessage("");
+                const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/message`,
+                    {
+                        content: newMessage,
+                        chatId: selectedChat,
+                    },
+                    config
+                );
+                // console.log(data);
+                socket.emit("new message", data);
+                setMessages([...messages, data]);
+            } catch (error) {
+                toast("Error Occured!", {
+                    type: "error",
                 });
             }
         }
@@ -239,7 +257,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                         InputProps={{
                             endAdornment: (
                                 <InputAdornment position="end">
-                                    <MdSend className='text-[#11256D]' size={23} />
+                                    <MdSend className='text-[#11256D] cursor-pointer' size={23}
+                                        onClick={sendMessageOnClick} />
                                 </InputAdornment>
                             ),
                         }}
@@ -247,8 +266,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                             style: {
                                 height: "35px",
                                 fontSize: "15px",
-                                outline:"none",
-                                disableUnderline: true 
+                                outline: "none",
+                                disableUnderline: true
                             },
 
                         }}
