@@ -168,7 +168,7 @@ export default function GroupChatModal({ open, handleClose }) {
           />
           <h1 className='my-2 font-black'>List of Added Users</h1>
 
-          <div className='flex flex-wrap space-x-2'>
+          <div className='flex flex-wrap'>
             {selectedUsers.map((u) => (
               <UserBadgeItem
                 key={u._id}

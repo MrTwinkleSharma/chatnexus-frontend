@@ -117,7 +117,7 @@ export default function UpdateGroupChatModal({ open, handleClose, fetchMessages,
       setRenameLoading(false);
     } catch (error) {
 
-      toast("Error Occured!",{
+      toast("Error Occured!", {
         type: "error",
       });
       setRenameLoading(false);
@@ -127,12 +127,12 @@ export default function UpdateGroupChatModal({ open, handleClose, fetchMessages,
 
   const handleAddUser = async (user1) => {
     if (selectedChat.users.find((u) => u._id === user1._id)) {
-      toast("User Already in group!",{type:"info"})
+      toast("User Already in group!", { type: "info" })
       return;
     }
 
     if (selectedChat.groupAdmin._id !== user._id) {
-      toast("Only admins can add someone!",{
+      toast("Only admins can add someone!", {
         type: "error",
       });
       return;
@@ -157,7 +157,7 @@ export default function UpdateGroupChatModal({ open, handleClose, fetchMessages,
       setFetchAgain(!fetchAgain);
       setLoading(false);
     } catch (error) {
-      toast("Error Occured!",{
+      toast("Error Occured!", {
         type: "error",
       });
       setLoading(false);
@@ -166,7 +166,7 @@ export default function UpdateGroupChatModal({ open, handleClose, fetchMessages,
   };
 
   const handleRemove = async (user1) => {
-    if(selectedChat.users.length <= 3){
+    if (selectedChat.users.length <= 3) {
       toast("3 Users are Necessary for a Room!", {
         type: "info",
       });
@@ -178,14 +178,14 @@ export default function UpdateGroupChatModal({ open, handleClose, fetchMessages,
       });
       return;
     }
-    
-    if (selectedChat.groupAdmin._id === user._id) {
+
+    if (selectedChat.groupAdmin._id === user1._id) {
       toast("Admin Cannot be Removed!", {
         type: "error",
       });
       return;
     }
-    
+
 
     try {
       setLoading(true);
@@ -243,7 +243,7 @@ export default function UpdateGroupChatModal({ open, handleClose, fetchMessages,
             List of Users
           </div>
 
-          <div className='flex flex-wrap space-x-2'>
+          <div className='flex flex-wrap '>
             {selectedChat?.users.map((u) => (
               <UserBadgeItem
                 key={u._id}
@@ -310,7 +310,7 @@ export default function UpdateGroupChatModal({ open, handleClose, fetchMessages,
           <div className='bg-[#11256D] h-[0.1rem] rounded-full my-3'></div>
           <div className='flex justify-end'>
             <button className="text-lg text-white py-2 px-4 bg-[#11256D] rounded-md  cursor-pointer"
-              onClick={handleRename}
+              onClick={() => { handleRename(); handleClose() }}
             >
               Update Name Changes
             </button>
